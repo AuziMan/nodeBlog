@@ -60,14 +60,9 @@ router.get('/post/:id', async (req, res) => {
 }
 });
 
-
-/**
- * GET / 
- * About Page
- * */
-router.get('/about', (req, res) => {
-    res.render('about');
-});
+// router.get('/songs', (req, res) => {
+//     res.render('songs');
+// });
 
 /**
  * GET / 
@@ -84,7 +79,6 @@ router.get('/contact', (req, res) => {
  * GET / 
  * Post :id
  * */
-
 
 router.post('/search', async (req, res) => {
 try{         
