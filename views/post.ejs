@@ -1,4 +1,9 @@
-<h1><%= data.title %></h1>
+<h1>Title: <%= data.title %></h1>
 <article class=""article>
     <%= data.body %>
 </article>
+<% if (data.song != null) { %>
+    <h2>Song:<%= data.song %></h2>
+  <% } else { %>
+    <h2></h2>
+  <% }%>

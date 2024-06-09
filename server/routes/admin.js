@@ -164,13 +164,13 @@ router.get('/add-posts', authMiddleware, async (req, res) => {
  * admin -- Create new post
  * */
 router.post('/add-posts', authMiddleware, async (req, res) => {
-
     try{
 
         try {
             const newPost = new Post({
                 title: req.body.title,
-                body: req.body.body
+                body: req.body.body,
+                song: req.body.song
             });
 
             await Post.create(newPost);
