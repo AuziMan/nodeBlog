@@ -355,8 +355,57 @@
   }
 
 
+  /*
+ Songs page CSS
+
+  */
+
+
+.song_info {
+  border: 10px green 
+}
+
+
+.song-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: center;
+}
+
+.song {
+  flex: 1 1 calc(33.333% - 1rem); /* Adjust the width calculation */
+  max-width: calc(33.333% - 1rem); /* Adjust the max-width calculation */
+  margin-bottom: 1rem; /* Add bottom margin for spacing between songs */
+  border-radius: 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid #000; /* Thin border for outline */
+  box-sizing: border-box; /* Ensure padding and border are included in width calculation */
+  display: flex; /* Use flexbox to align items vertically */
+  flex-direction: column; /* Arrange items vertically */
+}
+
+.song-image {
+  flex: 1; /* Take up remaining vertical space */
+}
+
+.album_imgs {
+  max-width: 100%; /* Ensure image doesn't exceed container width */
+}
+
+.song-content {
+  padding: 0.5rem; /* Add padding to the content */
+}
+
+
+
+
+
 /*
-Blog care CSS
+Blog card CSS
 */
 
 .card-container {

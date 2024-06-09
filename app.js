@@ -39,6 +39,7 @@ app.set('view engine', 'ejs');
 
 app.use('/', require('./server/routes/main'));
 app.use('/', require('./server/routes/admin'));
+app.use('/', require('./server/routes/spotify'));
 
 app.listen(PORT, () =>{
     console.log(`App is listening on port ${PORT}`);
