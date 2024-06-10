@@ -1,9 +1,9 @@
 <div class="author">
-    <h1 class="author__heading">Hi, I'm Austin</h1>
-    <p class="author__body">These are some of my favorite songs at the moment!</p>
+  <h1 class="author__heading">Hi, I'm Austin</h1>
+  <p class="author__body">These are some of my favorite songs at the moment!</p>
 </div>
 
-<h1>Songs:</h1>
+<!-- <h1>Songs:</h1> -->
 
 <!-- <ul class="song_info">
   <% topTracks.items.forEach(track => { %>
@@ -11,33 +11,36 @@
         <strong><%= track.name %></strong> by <%= track.artists.map(artist => artist.name).join(', ') %>
         <img class="album_imgs" src="<%= track.album.images[0].url %>" alt="Album Cover">
         
-    </li>
+    </li> 
   <% }) %>
 </ul> -->
 
 
 <div class="song-container">
-    <% topTracks.items.forEach((track, index) => { %>
-      <div class="song<%= index === 3 ? ' centered-song' : '' %>">
-        <a href="<%= track.external_urls.spotify %>" target="_blank">   
+  <% topTracks.items.forEach((track, index)=> { %>
+    <div class="song<%= index === 3 ? ' centered-song' : '' %>">
+      <a href="<%= track.external_urls.spotify %>" target="_blank">
 
         <div class="song-image">
           <img class="album_imgs" src="<%= track.album.images[0].url %>" alt="Album Cover">
         </div>
         <div class="song-content">
           <div>
-            <strong><%= track.name %></strong> by <%= track.artists.map(artist => artist.name).join(', ') %>
+            <strong>
+              <%= track.name %>
+            </strong>
+            by
+            <%= track.artists.map(artist=> artist.name).join(', ') %>
           </div>
         </div>
-        </a> 
-      </div>
+      </a>
+    </div>
     <% }) %>
-  </div>
-  
+</div>
 
 
 <!-- Logs Spotifys response to the console in the browser -->
 <!-- <script>
-    const topTracks = <%- JSON.stringify(topTracks) %>;
-    console.log('Top Tracks:', topTracks);
-</script> -->
+        const topTracks = <%- JSON.stringify(topTracks) %>;
+        console.log('Top Tracks:', topTracks);
+    </script> -->

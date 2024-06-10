@@ -1,47 +1,52 @@
 <div class="author">
-    <h1 class="author__heading">Auzi's Blog Page</h1>
-    <p class="author__body">Just a fun side project</p>
+  <h1 class="author__heading">Auzi's Blog Page</h1>
+  <p class="author__body">Just a fun side project</p>
 </div>
 
-<img src="/img/AandM.jpeg" alt="Auzi and Mason" class="auziandmason-img" >
+<img src="/img/AandM.jpeg" alt="Auzi and Mason" class="auziandmason-img">
 
 <section class="articles">
-    <h2 class="articles__heading"> Latest Posts</h2>
+  <h2 class="articles__heading">
+    Latest Posts</h2>
 
-    <!-- <ul class="article-ul">
-        <% data.forEach(post => { %>
-        <li>
-            <a href="/post/<%= post._id  %>">
-                <span><%= post.title %>  &nearr;</span>
-                <span class="article-list__date"><%= post.createdAt.toDateString(); %></span>
-            </a>
-        </li> 
-        <% }) %>
-    </ul>
-
-    <% if (nextPage !== null) { %>
-
-        <a href="/?page= <%= nextPage %>" class="pagination">&lt; View Older Posts</a>
-     
-    <% } %> -->
+  <!-- <ul class="article-ul">
+                <% data.forEach(post => { %>
+                <li>
+                    <a href="/post/<%= post._id  %>">
+                        <span><%= post.title %>  &nearr;</span>
+                        <span class="article-list__date"><%= post.createdAt.toDateString(); %></span>
+                    </a>
+                </li> 
+                <% }) %>
+            </ul>
+        
+            <% if (nextPage !== null) { %>
+        
+                <a href="/?page= <%= nextPage %>" class="pagination">&lt; View Older Posts</a>
+             
+            <% } %> -->
 
 </section>
 
 <div class="card-container">
-    <% data.forEach((post, index) => { %>
-      <div class="card<%= index === 3 ? ' centered-card' : '' %>">
-        <a href="/post/<%= post._id %>">
+  <% data.forEach((post, index)=> { %>
+    <div class="card<%= index === 3 ? ' centered-card' : '' %>">
+      <a href="/post/<%= post._id %>">
 
         <div class="image">
           <!-- Add image tag here if needed, e.g., <img src="<%= post.imageUrl %>" alt="<%= post.title %>"> -->
         </div>
         <div class="content">
           <div>
-              <span><%= post.title %> &nearr;</span>
-              <div class="article-list__date"><%= post.createdAt.toDateString() %></div>
-            </a>
-          </div>
-        </div>
-      </div>
-    <% }) %>
+            <span>
+              <%= post.title %>
+            </span>
+            <div class="article-list__date">
+              <%= post.createdAt.toDateString() %>
+            </div>
+      </a>
+    </div>
+</div>
+</div>
+<% }) %>
   </div>
