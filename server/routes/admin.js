@@ -15,7 +15,7 @@ const authMiddleware = (req, res, next) => {
     const token = req.cookies.token;
 
     if(!token) {
-        return res.redirect('/');
+        return res.render('admin/index', {layout: adminLayout});
     }
 
     try{
@@ -34,19 +34,23 @@ const authMiddleware = (req, res, next) => {
  * Admin
  * */
 
-router.get('/admin', async (req, res) => {
-    try{         
-        const locals = {
-            title: "Admin",
-            description: ""
-        }
-        res.render('admin/index', { locals, layout: adminLayout});
-       } catch(error) {
-           console.log(error);
-       }
+router.get('/admin', authMiddleware, async (req, res) => {
+    const locals = {
+        title: 'Add Post',
+        description: 'Admin add post page'
+    }
+    try{
+        const data = await Post.find();
+        res.render('admin/dashboard', {
+            locals,
+            data,
+            layout: adminLayout
+        });
+    } catch(error){
+        console.log(error);
+
+    }
     });
-
-
     /**
  * Post / 
  * Admin -- Check Login
@@ -55,28 +59,19 @@ router.get('/admin', async (req, res) => {
 router.post('/admin', async (req, res) => {
     try{  
         const { username, password} = req.body;
-
         const user = await User.findOne({username});
 
         if(!user) {
             return res.status(401).json({message: 'Invalid Creds'});
         } 
-
         const isPasswordValid = await bcrypt.compare(password, user.password);
-
         if(!isPasswordValid) {
             return res.status(401).json({message: 'Invalid pw'});
-
             // res.redirect('/invalidLogin');
-
         } 
-
         const token = jwt.sign({userId: user._id}, jwtSecret);
-
         res.cookie('token', token, {httpOnly: true})
-
         res.redirect('/dashboard');
-
 
         } catch(error) {
             console.log(error);
