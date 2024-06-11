@@ -74,11 +74,27 @@
   .main {
     padding: 20px 0;
   }
+
+
+  .image_container{
+    display: flex;
+    gap: 5px;
+  }
+
+  .test-img{
+    max-height: 328px;
+    max-width: 228px;
+    filter: drop-shadow(0px 44px 34px rgba(0, 0, 0, 0.25));
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    margin: auto;
+    display: block;
+  }
   
   /* Hero Section */
   .auziandmason-img {
-    max-height: 428px;
-    max-width: 328px;
+    max-height: 328px;
+    max-width: 228px;
     filter: drop-shadow(0px 44px 34px rgba(0, 0, 0, 0.25));
     overflow: hidden;
     border-radius: var(--border-radius);
@@ -87,26 +103,43 @@
   }
 
   .threeamigos-img {
-    max-height: 428px;
-    max-width: 328px;
+    max-height: 328px;
+    max-width: 228px;
     filter: drop-shadow(0px 44px 34px rgba(0, 0, 0, 0.25));
     overflow: hidden;
     border-radius: var(--border-radius);
     margin: auto;
     display: block;
   }
+
+
   
   
   /* Main Header */
   .header {
     display: grid;
     align-items: center;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto 1fr;
     grid-template-rows: auto;
     grid-template-areas: 
     "logo button"
     "menu menu";
-    padding-top: 10px;
+    padding-top: 20px;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center; /* Ensure items are vertically centered */
+    grid-area: logo;
+  }
+
+  .calvin-hobbs-img {
+    max-height: 40px; /* Adjust the maximum height as needed */
+    height: auto; /* Maintain aspect ratio */
+    width: auto; /* Maintain aspect ratio */
+    border-radius: 20px;
+    align-self: center;
+    margin-left: 10px;
   }
   
   @media only screen and (min-width: 768px) {
@@ -122,6 +155,8 @@
     font-size: 25px;
     text-decoration: none;
     grid-area: logo;
+    align-self: center;
+    margin: 0;
   }
   
   .header__logo:hover {
@@ -135,7 +170,8 @@
   }
   
   .header__logo, .header__nav, .header__button {
-    width: 100%;
+    width: auto;
+    margin: 0;
   }
   
   .header__button {
@@ -454,6 +490,7 @@ Blog card CSS
 
 .image {
   object-fit: cover;
+  border-radius: 0.5rem;
   width: 100%;
   height: 150px;
   background-color: rgb(197, 37, 5);
