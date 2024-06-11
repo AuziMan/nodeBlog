@@ -9,8 +9,8 @@ const Post = require('../models/Post')
 router.get('/', async (req, res) => {
 try{
     const locals = {
-        title: "nodeJS Blog",
-        description: "Simple blog page"
+        title: "Auzi's Music Blog",
+        description: "Mucis Blog Page"
     }
     let perPage = 10;
     let page = req.query.page || 1;
