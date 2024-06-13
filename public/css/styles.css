@@ -813,5 +813,22 @@ body.dark h1, body.dark .support a {color: #fff;}
 
 
 
+
+/* 
+  Now Playing ----------------------------------------------------------
+ */
+
+ .now-playing__section{
+  /* border-style: dashed; */
+  display: block;
+ }
+
+ .now-playing__image{
+  max-width: 20%; /* Adjust the max-width calculation */
+  border-radius: 50px;
+
+ }
+
+
   
   
