@@ -1,9 +1,16 @@
-<h1>Title: <%= data.title %></h1>
-<article class=""article>
-    <%= data.body %>
-</article>
-<% if (data.song != null) { %>
-    <h2>Song:<%= data.song %></h2>
-  <% } else { %>
-    <h2></h2>
-  <% }%>
+<div class="wrapper">
+  <div class="post-page-container">
+    <h2 class="post-page-title">
+      <%= data.title %>
+    </h2>
+    <article class="article">
+      <%= data.body %>
+    </article>
+  </div>
+  <footer class="post-page-song">
+    <% if (data.song) { %>
+      <h3>Song: <%= data.song %>
+      </h3>
+      <% } %>
+  </footer>
+</div>

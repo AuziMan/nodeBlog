@@ -235,31 +235,9 @@
     font-size: var(--font-size-md);
     margin: 5px 0 40px 0;
   }
-  
-  
-  /* Home Article List */
-  .articles__heading {
-    margin-top: 4rem;
-    font-weight: 800;
-    text-align: center; /* Add this line to align the date on the left */
 
-  }
   
-  .article-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    font-size: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .article-list__date {
-    display: block;
-    font-size: 0.8rem;
-    color: #656;
-    text-align: center; /* Add this line to align the date on the left */
-  }
+
   
   
   .article-ul li a {
@@ -322,25 +300,70 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  .admin-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* Adjust the gap between cards */
+    justify-content: center; /* Center the cards horizontally */
+  }
+
+  .admin-card {
+    position: relative;
+    flex: 1 1 calc(40% - 1rem); /* Adjust the width calculation */
+    max-width: calc(40% - 1rem); /* Adjust the max-width calculation */
+    height: auto; /* Set a fixed height for all cards */
+    margin-bottom: 1rem; /* Add bottom margin for spacing between cards */
+    border-radius: 0.5rem;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    box-sizing: border-box; /* Ensure padding and border are included in width calculation */
+    overflow: hidden; /* Ensure absolute positioned elements don't overflow the container */
+    display: flex;
+  flex-direction: column; /* Ensure content flows properly */
+  }
   
   .admin-posts {
     padding: 0;
     margin: 0;
+  }
+  .admin-blog-content{
+    flex: 1; /* Allow the content to expand to fill the card */
+  padding: 20px;
+  }
+
+  .admin-btn{
+    padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  }
+
+  .admin-post-controls {
+    margin-top: auto; /* Push controls to the bottom of the card */
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Adjust the gap between Edit and Delete buttons */
+    padding: 10px; /* Add padding to separate from content */
   }
   
   .admin-post-controls form {
     display: inline-block;
   }
   
-  .admin-post-controls .btn  {
+  .admin-post-controls .admin-btn {
     display: inline-block;
-    background-color: var(--black);
-    color: var(--gray-light);
-    border: 0;
+    background-color: #007bff;
+    color: #fff;
     text-decoration: none;
-    font-size: .8rem;
-    padding: 4px 8px;
-    line-height: 2;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px; /* Adjust margin between buttons */
   }
   
   .admin-posts li {
@@ -452,26 +475,29 @@
 
 
 /*
-Blog card CSS
+Blog card CSS ---------------------------------------------------------------------------
 */
 
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  width: 100%;
-  max-width: 1200px;
-  justify-content: center;
+  gap: 1rem; /* Adjust the gap between cards */
+  justify-content: center; /* Center the cards horizontally */
+  align-items: flex-start; /* Align items at the start of the flex container */
 }
 
 .card {
-  flex: 1 1 calc(33.333% - 1rem);
-  max-width: calc(33.333% - 1rem);
-  margin-bottom: 1rem;
+  position: relative; /* Ensure .article-list__date is positioned relative to .card */
+  flex: 1 1 calc(80% - 1rem); /* Adjust the width calculation */
+  max-width: calc(80% - 1rem); /* Adjust the max-width calculation */
+  height: 220px; /* Set a fixed height for all cards */
+  margin-bottom: 5px; /* Add bottom margin for spacing between cards */
   border-radius: 0.5rem;
-  background-color: #fff;
+  background-color: #2f365f;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  border: 1px solid #000; /* Thin border for outline */
+  box-sizing: border-box; /* Ensure padding and border are included in width calculation */
+  overflow: hidden; /* Ensure absolute positioned elements don't overflow the container */
+
 }
 
 
@@ -482,10 +508,30 @@ Blog card CSS
 
 .card a {
   text-decoration: none
+
 }
 
-.content {
-  padding: 1.1rem;
+.post-title {
+  margin-bottom: 5px; /* Adjust margin to control spacing */
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.post-body {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  line-height: 1.4;
+  margin-bottom: 10px; /* Adjust margin to control spacing */
+}
+
+.post-song{
+  padding-top: 5px;
+  font-family: Gill Sans, sans-serif;
 }
 
 .image {
@@ -530,6 +576,30 @@ Blog card CSS
 
 .action:hover span {
   transform: translateX(4px);
+}
+
+.post-title {
+  margin-bottom: 10px; /* Increase margin temporarily to test */
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 1.4; /* Ensure line-height is consistent */
+}
+
+
+.blog-content {
+  padding: 20px;
+  height: 100%; /* Ensure it takes the full height of the card */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  font-family: Andale Mono, monospace;
+}
+
+.article-list__date {
+  font-size: 12px; /* Adjust font size if needed */
+  color: #888; /* Adjust color if needed */
+  align-self: flex-end; /* Align the date to the bottom */
 }
 
 
@@ -625,12 +695,6 @@ cursor: pointer;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }
 
-.forgot {
-  text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-  color: #E1BEE7;
-  padding-top: 15px;
-}
-
 a {
   text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
   /* color: #E1BEE7; */
@@ -721,5 +785,33 @@ body.dark h1, body.dark .support a {color: #fff;}
 .support a:hover{
   transform: scale(1.1);
 }
+
+/* 
+  Post page CSS -------------------------------------------------------------- 
+*/
+
+.wrapper {
+  align-items: center; /* Center contents vertically */
+  height: 70vh /* Full viewport height */
+}
+
+.post-page-container {
+  max-width: 70%;
+  padding: 20px; /* Example padding */
+  margin: 20px auto; /* Center horizontally and add margin */
+  
+}
+
+.post-page-title{
+}
+
+.post-page-song {
+  padding: 10px;
+  border-top: 1px dashed #ccc; /* Example border style */
+  margin-top: auto; /* Push the footer to the bottom */
+}
+
+
+
   
   
