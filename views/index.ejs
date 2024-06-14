@@ -47,19 +47,25 @@
 </section>
 
 
-<section class="now-playing__section">
-  <h2 class="now-playing__heading">Now Playing</h2>
+<div class="now-playing__container">
+  <section class="now-playing__section">
+  <h3 class="now-playing__heading">Now Playing</h3>
+  
+  <img src="<%= nowPlaying[0].preview %>" alt="Album Cover" class="now-playing__image">
   <% if (nowPlaying.length > 0 && nowPlaying[0].name !== 'Nothing Playing') { %>
-    <div class="now-playing__image">
-      <img src="<%= nowPlaying[0].preview %>" alt="Album Cover">
-    </div>
-    <ul class="now-playing__list">
-      <li><%= nowPlaying[0].name %> by <%= nowPlaying[0].artist %></li>
-    </ul>
+    <h4 class="now-playing__list">
+      <div>
+        <strong class="now-playing-song__name"><%= nowPlaying[0].name %></strong> 
+        <h4>by <%= nowPlaying[0].artist %></h4>
+      </div>
+    </h4>
+
   <% } else { %>
     <p>No track currently playing.</p>
   <% } %>
 </section>
+</div>
+
 
 
 <!-- Logs Spotifys response to the console in the browser -->
