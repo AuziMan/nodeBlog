@@ -3,50 +3,67 @@
   <p class="author__body">Just a fun side project</p>
 </div>
 
-<img src="/img/AandM.jpeg" alt="Auzi and Mason" class="auziandmason-img">
+<div class="image_container">
+  <img src="/img/AandM.jpeg" alt="Auzi and Mason" class="auziandmason-img">
+  <img src="/img/threeAmigos.jpeg" alt="threeAmigos" class="threeamigos-img">
+  <img src="/img/AandK.jpeg" alt="threeAmigos" class="threeamigos-img">
+</div>
 
 <section class="articles">
   <h2 class="articles__heading">
     Latest Posts</h2>
-
-  <!-- <ul class="article-ul">
-                <% data.forEach(post => { %>
-                <li>
-                    <a href="/post/<%= post._id  %>">
-                        <span><%= post.title %>  &nearr;</span>
-                        <span class="article-list__date"><%= post.createdAt.toDateString(); %></span>
-                    </a>
-                </li> 
-                <% }) %>
-            </ul>
-        
-            <% if (nextPage !== null) { %>
-        
-                <a href="/?page= <%= nextPage %>" class="pagination">&lt; View Older Posts</a>
-             
-            <% } %> -->
-
 </section>
 
-<div class="card-container">
-  <% data.forEach((post, index)=> { %>
-    <div class="card<%= index === 3 ? ' centered-card' : '' %>">
-      <a href="/post/<%= post._id %>">
-
-        <div class="image">
-          <!-- Add image tag here if needed, e.g., <img src="<%= post.imageUrl %>" alt="<%= post.title %>"> -->
-        </div>
-        <div class="content">
-          <div>
-            <span>
+<section>
+  <div class="card-container">
+    <% data.forEach((post, index)=> { %>
+      <div class="card<%= index === 3 ? ' centered-card' : '' %>">
+        <a href="/post/<%= post._id %>">
+          <div class="blog-content">
+            <h1 class="post-title">
               <%= post.title %>
+            </h1>
+            <span class="post-body">
+              <%= post.body %>
+            </span>
+            <span class="post-song">
+              <% if (post.song) { %>
+                <strong>Song:</strong>
+                <%= post.song %>
+                  <% } else { %>
+                    <p></p>
+                    <% } %>
             </span>
             <div class="article-list__date">
               <%= post.createdAt.toDateString() %>
+                <div class="read-more">Click to Read More!</div>
+
             </div>
-      </a>
-    </div>
-</div>
-</div>
-<% }) %>
+          </div>
+        </a>
+      </div>
+      <% }) %>
   </div>
+</section>
+
+
+<section class="now-playing__section">
+  <h2 class="now-playing__heading">Now Playing</h2>
+  <% if (nowPlaying.length > 0 && nowPlaying[0].name !== 'Nothing Playing') { %>
+    <div class="now-playing__image">
+      <img src="<%= nowPlaying[0].preview %>" alt="Album Cover">
+    </div>
+    <ul class="now-playing__list">
+      <li><%= nowPlaying[0].name %> by <%= nowPlaying[0].artist %></li>
+    </ul>
+  <% } else { %>
+    <p>No track currently playing.</p>
+  <% } %>
+</section>
+
+
+<!-- Logs Spotifys response to the console in the browser -->
+<script>
+  const nowPlayingData = <%- JSON.stringify(nowPlayingData) %>;
+  console.log('Now Playing:', nowPlayingData);
+</script>

@@ -2,41 +2,65 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post')
 
+const {getNowPlaying} = require('../config/spotify'); // Adjust the path
+
+
 /**
  * GET / 
  * Home 
  * */
 router.get('/', async (req, res) => {
-try{
-    const locals = {
+    try {
+      // Fetch now playing data from Spotify
+      const nowPlayingData = await getNowPlaying();
+  
+      let nowPlaying = [{
+        name: 'Nothing Playing',
+        artist: '',
+        preview: '' // Placeholder URL or leave empty
+      }];
+  
+
+      if (nowPlayingData.isPlaying && nowPlayingData.data.item) {
+        nowPlaying = [{
+          name: nowPlayingData.data.item.name,
+          artist: nowPlayingData.data.item.artists.map(artist => artist.name).join(', '),
+          preview: nowPlayingData.data.item.album.images[0].url
+        }];
+      }
+
+      //console.log(nowPlaying)
+
+      const locals = {
         title: "Auzi's Music Blog",
-        description: "Mucis Blog Page"
+        description: "Music Blog Page"
+      };
+      let perPage = 10;
+      let page = req.query.page || 1;
+  
+      const data = await Post.aggregate([{ $sort: { createdAt: -1 } }])
+        .skip(perPage * page - perPage)
+        .limit(perPage)
+        .exec();
+  
+      const count = await Post.countDocuments();
+      const nextPage = parseInt(page) + 1;
+      const hasNextPage = nextPage <= Math.ceil(count / perPage);
+  
+        res.render('index', {
+          nowPlayingData,
+          nowPlaying,
+          data,
+          locals,
+          current: page,
+          hasNextPage: hasNextPage ? nextPage: null
+          // Add other rendering parameters as needed
+        });
+    } catch (error) {
+      console.error('Error fetching now playing track:', error);
+      res.status(500).send('Internal Server Error');
     }
-    let perPage = 10;
-    let page = req.query.page || 1;
-
-    const data = await Post.aggregate([{ $sort: { createdAt: -1 } } ] )
-    .skip(perPage * page - perPage)
-    .limit(perPage)
-    .exec();
-
-    const count = await Post.count();
-    const nextPage = parseInt(page) + 1;
-    const hasNextPage = nextPage <= Math.ceil(count / perPage);
-
-
-    res.render('index', {
-        locals, 
-        data,
-        current: page,
-        nextPage: hasNextPage ? nextPage : null
-    });
-   } catch (error){
-    console.log(error)
-   }
-
-
-});
+  });
 
 
 /**
