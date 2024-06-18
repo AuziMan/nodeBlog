@@ -199,7 +199,7 @@ router.get('/edit-post/:id', authMiddleware, async (req, res) => {
             layout: adminLayout
         })
 
-        res.redirect(`/edit-posts/${req.params.id}`);
+        //res.redirect(`/edit-posts/${req.params.id}`);
 
     } catch(error){
         console.log(error);

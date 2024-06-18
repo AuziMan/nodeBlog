@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
         nowPlaying = [{
           name: nowPlayingData.data.item.name,
           artist: nowPlayingData.data.item.artists.map(artist => artist.name).join(', '),
-          preview: nowPlayingData.data.item.album.images[0].url
+          preview: nowPlayingData.data.item.album.images[0].url,
         }];
       }
 
@@ -68,12 +68,25 @@ router.get('/', async (req, res) => {
  * Post :id
  * */
 
-router.get('/post/:id', async (req, res) => {
- try{   
-    let slug = req.params.id;
+const slugify = (text) => {
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
+};
 
-    const data = await Post.findById({_id: slug});
-
+router.get('/post/:title', async (req, res) => {
+ try{
+  
+    let title =  req.params.title 
+    
+    const data = await Post.findOne({title: title});
+    
+    if(!title){
+      return res.status(404).send('Post Not Found');
+    }
     const locals = {
         title: data.title + " Blog",
         description: "Simple blog page"

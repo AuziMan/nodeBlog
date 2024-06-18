@@ -18,7 +18,7 @@
   <div class="card-container">
     <% data.forEach((post, index)=> { %>
       <div class="card<%= index === 3 ? ' centered-card' : '' %>">
-        <a href="/post/<%= post._id %>">
+        <a href="/post/<%= post.title %>">
           <div class="blog-content">
             <h1 class="post-title">
               <%= post.title %>
@@ -48,11 +48,11 @@
 
 
 <div class="now-playing__container">
-  <section class="now-playing__section">
-  <h3 class="now-playing__heading">Now Playing</h3>
-  
-  <img src="<%= nowPlaying[0].preview %>" alt="Album Cover" class="now-playing__image">
+  <section class="now-playing__section">  
   <% if (nowPlaying.length > 0 && nowPlaying[0].name !== 'Nothing Playing') { %>
+    <h3 class="now-playing__heading">Now Playing</h3>
+    <img src="<%= nowPlaying[0].preview %>" alt="Album Cover" class="now-playing__image">
+
     <h4 class="now-playing__list">
       <div>
         <strong class="now-playing-song__name"><%= nowPlaying[0].name %></strong> 
