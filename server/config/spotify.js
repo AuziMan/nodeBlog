@@ -66,9 +66,10 @@ const getNowPlaying = async () => {
       const contentType = response.headers.get('content-type');
       if (contentType && contentType.includes('application/json')) {
         const data = await response.json();
+        //console.log(data);
         return {
           data,
-          isPlaying: true
+          isPlaying: true,
         }
         
       } else {

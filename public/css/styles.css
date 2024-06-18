@@ -478,6 +478,11 @@
 Blog card CSS ---------------------------------------------------------------------------
 */
 
+.articles__heading{
+  justify-content: center; /* Center the cards horizontally */
+  display: flex;
+}
+
 .card-container {
   display: flex;
   flex-wrap: wrap;
