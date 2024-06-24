@@ -14,6 +14,14 @@
     Latest Posts</h2>
 </section>
 
+<div class="topic-button-container">
+  <div class="multi-button">
+    <button><i class="fas fa-cut"></i> Cut</button>
+    <button><i class="fas fa-copy"></i> Copy</button>
+    <button><i class="fas fa-paste"></i> Paste</button>
+  </div>
+</div>
+
 <section>
   <div class="card-container">
     <% data.forEach((post, index)=> { %>
@@ -37,7 +45,6 @@
             <div class="article-list__date">
               <%= post.createdAt.toDateString() %>
                 <div class="read-more">Click to Read More!</div>
-
             </div>
           </div>
         </a>

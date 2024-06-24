@@ -1,5 +1,4 @@
 const { response } = require('express');
-const fetch = require('node-fetch');
 const querystring = require('querystring');
 
 const client_id = process.env.SPOTIFY_CLIENT_ID;
