@@ -1,0 +1,27 @@
+<div class="card">
+    <a href="/post/<%= post.title %>">
+      <div class="blog-content">
+        <h1 class="post-title"><%= post.title %></h1>
+        <span class="post-body"><%= post.body %></span>
+        <span class="post-song">
+          <% if (post.song) { %>
+            <strong>Song:</strong> <%= post.song %>
+          <% } else { %>
+            <p></p>
+          <% } %>
+        </span>
+        <div class="article-list__date">
+          <span class="post-topic">
+            <% if (post.topic) { %>
+              <strong>Topic:</strong> <%= post.topic %>
+            <% } else { %>
+              <p></p>
+            <% } %>
+          </span>
+          <br>
+          <%= post.createdAt.toDateString() %>
+          <div class="read-more">Click to Read More!</div>
+        </div>
+      </div>
+    </a>
+  </div>
