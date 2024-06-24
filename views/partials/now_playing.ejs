@@ -1,0 +1,18 @@
+<div class="now-playing__container">
+    <section class="now-playing__section">  
+    <% if (nowPlaying.length > 0 && nowPlaying[0].name !== 'Nothing Playing') { %>
+      <h3 class="now-playing__heading">Now Playing</h3>
+      <img src="<%= nowPlaying[0].preview %>" alt="Album Cover" class="now-playing__image">
+  
+      <h4 class="now-playing__list">
+        <div>
+          <strong class="now-playing-song__name"><%= nowPlaying[0].name %></strong> 
+          <h4>by <%= nowPlaying[0].artist %></h4>
+        </div>
+      </h4>
+  
+    <% } else { %>
+      <p>No track currently playing.</p>
+    <% } %>
+  </section>
+  </div>

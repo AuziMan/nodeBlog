@@ -82,16 +82,16 @@ router.get('/post/:title', async (req, res) => {
   
     let title =  req.params.title 
     
-    const data = await Post.findOne({title: title});
+    const post = await Post.findOne({title: title});
     
-    if(!title){
+    if(!post){
       return res.status(404).send('Post Not Found');
     }
     const locals = {
-        title: data.title + " Blog",
+        title: post.title + " Blog",
         description: "Simple blog page"
     }
-    res.render('post', {locals, data});
+    res.render('post', {locals, post});
 } catch(error) {
     console.log(error);
 }
@@ -140,6 +140,9 @@ try{
        console.log(error);
    }
 });
+
+
+
 
 
 
