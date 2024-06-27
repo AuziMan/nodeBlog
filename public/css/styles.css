@@ -491,6 +491,13 @@ Blog card CSS ------------------------------------------------------------------
   align-items: flex-start; /* Align items at the start of the flex container */
 }
 
+.other-posts-header{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start; /* Align items at the start of the flex container */
+  padding: 5px;
+}
+
 .card {
   position: relative; /* Ensure .article-list__date is positioned relative to .card */
   flex: 1 1 calc(80% - 1rem); /* Adjust the width calculation */

@@ -14,14 +14,15 @@
                 <p></p>
               <% } %>
             </span>
-            <span class="post-topic">
-              <% if (post.topic) { %>
-                <strong>Topic:</strong> <%= post.topic %>
-              <% } else { %>
-                <p>no topic here</p>
-              <% } %>
-            </span>
             <div class="article-list__date">
+              <span class="post-topic">
+                <% if (post.topic) { %>
+                  <strong>Topic:</strong> <%= post.topic %>
+                <% } else { %>
+                  <p></p>
+                <% } %>
+              </span>
+              <br>
               <%= post.createdAt.toDateString() %>
               <div class="read-more">Click to Read More!</div>
             </div>
@@ -32,8 +33,9 @@
   <% } %>
 
   <% if (otherPosts.length > 0) { %>
-    <br>
-    <h2>Other Posts</h2>
+    <div class="other-posts-header">
+      <h2>Other posts</h2>
+    </div>
     <% otherPosts.forEach((post, index) => { %>
       <div class="card<%= index === 3 ? ' centered-card' : '' %>">
         <a href="/post/<%= post.title %>">
@@ -47,14 +49,15 @@
                 <p></p>
               <% } %>
             </span>
-            <span class="post-topic">
-              <% if (post.topic) { %>
-                <strong>Topic:</strong> <%= post.topic %>
-              <% } else { %>
-                <p>no topic here</p>
-              <% } %>
-            </span>
             <div class="article-list__date">
+              <span class="post-topic">
+                <% if (post.topic) { %>
+                  <strong>Topic:</strong> <%= post.topic %>
+                <% } else { %>
+                  <p></p>
+                <% } %>
+              </span>
+              <br>
               <%= post.createdAt.toDateString() %>
               <div class="read-more">Click to Read More!</div>
             </div>
