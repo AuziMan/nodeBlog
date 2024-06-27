@@ -1,36 +1,66 @@
- <div class="card-container">
-    <% data.forEach((post, index)=> { %>
+<div class="card-container">
+  <% if (topicFilter && topicPosts.length > 0) { %>
+    <h2>Posts on <%= topicFilter %></h2>
+    <% topicPosts.forEach((post, index) => { %>
       <div class="card<%= index === 3 ? ' centered-card' : '' %>">
         <a href="/post/<%= post.title %>">
           <div class="blog-content">
-            <h1 class="post-title">
-              <%= post.title %>
-            </h1>
-            <span class="post-body">
-              <%= post.body %>
-            </span>
+            <h1 class="post-title"><%= post.title %></h1>
+            <span class="post-body"><%= post.body %></span>
             <span class="post-song">
               <% if (post.song) { %>
-                <strong>Song:</strong>
-                <%= post.song %>
-                  <% } else { %>
-                    <p></p>
-                    <% } %>
+                <strong>Song:</strong> <%= post.song %>
+              <% } else { %>
+                <p></p>
+              <% } %>
             </span>
-            <span class="post-song">
+            <span class="post-topic">
               <% if (post.topic) { %>
-                <strong>Topic:</strong>
-                <%= post.topic %>
-                  <% } else { %>
-                    <p>no topic here</p>
-                    <% } %>
+                <strong>Topic:</strong> <%= post.topic %>
+              <% } else { %>
+                <p>no topic here</p>
+              <% } %>
             </span>
             <div class="article-list__date">
               <%= post.createdAt.toDateString() %>
-                <div class="read-more">Click to Read More!</div>
+              <div class="read-more">Click to Read More!</div>
             </div>
           </div>
         </a>
       </div>
-      <% }) %>
-  </div>
+    <% }) %>
+  <% } %>
+
+  <% if (otherPosts.length > 0) { %>
+    <br>
+    <h2>Other Posts</h2>
+    <% otherPosts.forEach((post, index) => { %>
+      <div class="card<%= index === 3 ? ' centered-card' : '' %>">
+        <a href="/post/<%= post.title %>">
+          <div class="blog-content">
+            <h1 class="post-title"><%= post.title %></h1>
+            <span class="post-body"><%= post.body %></span>
+            <span class="post-song">
+              <% if (post.song) { %>
+                <strong>Song:</strong> <%= post.song %>
+              <% } else { %>
+                <p></p>
+              <% } %>
+            </span>
+            <span class="post-topic">
+              <% if (post.topic) { %>
+                <strong>Topic:</strong> <%= post.topic %>
+              <% } else { %>
+                <p>no topic here</p>
+              <% } %>
+            </span>
+            <div class="article-list__date">
+              <%= post.createdAt.toDateString() %>
+              <div class="read-more">Click to Read More!</div>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% }) %>
+  <% } %>
+</div>

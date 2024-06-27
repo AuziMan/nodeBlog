@@ -44,8 +44,28 @@ router.get('/', async (req, res) => {
           query.topic = topicFilter;
       }
 
+      let topicPosts = [];
+      let otherPosts = [];
 
-      const topics = await Post.distinct('topic');
+      if (topicFilter) {
+        topicPosts = await Post.find({ topic: topicFilter })
+            .sort({ createdAt: -1 })
+            .exec();
+        
+        otherPosts = await Post.find({ topic: { $ne: topicFilter } })
+            .sort({ createdAt: -1 })
+            .skip(perPage * page - perPage)
+            .limit(perPage)
+            .exec();
+    } else {
+        otherPosts = await Post.find({})
+            .sort({ createdAt: -1 })
+            .skip(perPage * page - perPage)
+            .limit(perPage)
+            .exec();
+    }
+
+    const topics = await Post.distinct('topic');
 
   
       const data = await Post.aggregate([{ $sort: { createdAt: -1 } }])
@@ -60,12 +80,14 @@ router.get('/', async (req, res) => {
         res.render('index', {
           nowPlayingData,
           nowPlaying,
+          topicPosts,
+          otherPosts,
           data,
           locals,
-          topics,
-          topicFilter,
           current: page,
-          hasNextPage: hasNextPage ? nextPage: null
+          hasNextPage: hasNextPage ? nextPage: null,
+          topics,
+          topicFilter 
           // Add other rendering parameters as needed
         });
     } catch (error) {
