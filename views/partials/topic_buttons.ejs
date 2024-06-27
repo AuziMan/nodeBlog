@@ -1,8 +1,20 @@
-<div class="topic-button-container">
+<!-- <div class="topic-button-container">
     <div class="multi-button">
       <button><i class="fas fa-cut"></i> Cut</button>
       <button><i class="fas fa-copy"></i> Copy</button>
       <button><i class="fas fa-paste"></i> Paste</button>
+    </div>
+</div> -->
+
+<div class="topic-button-container">
+  <div class="multi-button">
+    <% topics.forEach(topic => { %>
+      <button><i class="fas fa-copy"></i>  
+        <a href="/?topic=<%= topic %>" class="topics__link">
+          <%= topic %>
+        </a>
+      </button>
+    <% }) %>
     </div>
 </div>
 

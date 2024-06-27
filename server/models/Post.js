@@ -21,6 +21,10 @@ const PostSchema = new Schema({
     song:{
         type: String,
         required: false
+    },
+    topic:{
+        type: String,
+        required: false
     }
 });
 

@@ -17,6 +17,14 @@
                     <p></p>
                     <% } %>
             </span>
+            <span class="post-song">
+              <% if (post.topic) { %>
+                <strong>Topic:</strong>
+                <%= post.topic %>
+                  <% } else { %>
+                    <p>no topic here</p>
+                    <% } %>
+            </span>
             <div class="article-list__date">
               <%= post.createdAt.toDateString() %>
                 <div class="read-more">Click to Read More!</div>

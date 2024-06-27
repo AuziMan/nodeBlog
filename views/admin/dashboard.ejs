@@ -23,6 +23,14 @@
                   <p></p>
                   <% } %>
           </span>
+          <span class="post-song">
+            <% if (post.topic) { %>
+              <strong>Topic:</strong>
+              <%= post.topic %>
+                <% } else { %>
+                  <p></p>
+                  <% } %>
+          </span>
         </div>
       </a>
       <div class="admin-post-controls">

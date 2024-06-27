@@ -37,6 +37,16 @@ router.get('/', async (req, res) => {
       };
       let perPage = 10;
       let page = req.query.page || 1;
+
+      let topicFilter = req.query.topic || null;
+      let query = {};
+      if (topicFilter) {
+          query.topic = topicFilter;
+      }
+
+
+      const topics = await Post.distinct('topic');
+
   
       const data = await Post.aggregate([{ $sort: { createdAt: -1 } }])
         .skip(perPage * page - perPage)
@@ -52,6 +62,8 @@ router.get('/', async (req, res) => {
           nowPlaying,
           data,
           locals,
+          topics,
+          topicFilter,
           current: page,
           hasNextPage: hasNextPage ? nextPage: null
           // Add other rendering parameters as needed
@@ -97,9 +109,6 @@ router.get('/post/:title', async (req, res) => {
 }
 });
 
-// router.get('/songs', (req, res) => {
-//     res.render('songs');
-// });
 
 /**
  * GET / 
